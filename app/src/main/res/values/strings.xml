@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Town Heads Barber Shop</string>
+    <string name="action_settings">Settings</string>
+    <string name="signIn">Sign In</string>
+    <string name="registerNow">Register Now</string>
+    <string name="passWord">Password</string>
+    <string name="userName">Enter Username</string>
+    <string name="townheadslogo">townHeadsLogo</string>
+
+</resources>
