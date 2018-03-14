@@ -20,19 +20,18 @@ import android.view.View.OnClickListener;
 public class MainActivity extends AppCompatActivity {
 
 
-    public Button loginButton;
-    public Button registerNowButton;
+    private Button loginButton;
+    private Button registerNowButton;
     private SharedPreferences settings;
     public boolean mIsBackButtonPressed;
 
 
     public void onCreate(Bundle savedInstanceState) {
+
+        Button btn1;
+
+
         super.onCreate(savedInstanceState);
-
-        settings = getSharedPreferences("login", 0);
-        if (settings.getBoolean("loggedIn", false))
-            startHomeScreen();
-
         setContentView(R.layout.activity_main);
 
 
@@ -40,7 +39,9 @@ public class MainActivity extends AppCompatActivity {
 
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View v)
+            {
+
                 startActivity(new Intent(MainActivity.this, Landing.class));
             }
         });
@@ -56,31 +57,41 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+
+        settings = getSharedPreferences("login", 0);
+        if (settings.getBoolean("loggedIn", false))
+            startHomeScreen();
+
     }
 
 
 
-    public void register(View v) {
-        startActivity(new Intent(this, Register.class));
-    }
 
 
 
 
+    public void register(View v)
 
-
-    private void startHomeScreen() {
-
-        Intent intent = new Intent(MainActivity.this, Landing.class);
-        MainActivity.this.startActivity(intent);
-
-
-        public void loginButtonPressed (View view)
             {
-                Log.v("Login", "Logged In");
+                startActivity(new Intent(this, Register.class));
             }
 
-        public void registerButtonPressed (View view)
+
+    private void startHomeScreen()
+            {
+
+                Intent intent = new Intent(MainActivity.this, Landing.class);
+                MainActivity.this.startActivity(intent);
+            }
+
+
+    public void loginButtonPressed (View view)
+            {
+                Log.v("Login", "Logged In");
+
+            }
+
+    public void registerButtonPressed (View view)
             {
                 Log.v("Register", "Registered Now");
             }
@@ -89,6 +100,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void login(View v) {
+
+
+
 
         CharSequence username = ((TextView) findViewById(R.id.userName))
                 .getText();
