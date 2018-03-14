@@ -1,10 +1,29 @@
 <resources>
+
+    <!--Home Page-->
     <string name="app_name">Town Heads Barber Shop</string>
     <string name="action_settings">Settings</string>
     <string name="signIn">Sign In</string>
-    <string name="registerNow">Register Now</string>
+    <string name="registerNowButton">Register Now</string>
     <string name="passWord">Password</string>
     <string name="userName">Enter Username</string>
     <string name="townheadslogo">townHeadsLogo</string>
+
+    <!--Register Page-->
+    <string name="registerPage">Register Page</string>
+    <string name="registerButton">Register</string>
+    <string name="contact_number">Contact Number</string>
+    <string name="create_password">Confirm Password</string>
+    <string name="confirm_username">Create Password</string>
+    <string name="create_username">Create Username</string>
+    <string name="full_name">Full Name</string>
+    <string name="accountmanagement">accountManagement</string>
+    <string name="thlogo">thlogo</string>
+    <string name="framelogo">frameLogo</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="products">Products</string>
+    <string name="galleryImage">gallery</string>
+    <string name="gallery">Gallery</string>
+    <string name="galleryText">Gallery</string>
 
 </resources>

@@ -1,5 +1,6 @@
 package ie.app.barbershop;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,48 +11,110 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.util.Log;
+import android.content.Intent;
+import android.widget.TextView;
+import android.widget.Toast;
+import android.view.View.OnClickListener;
+
 
 public class MainActivity extends AppCompatActivity {
 
 
     private Button loginButton;
-    private Button registerButton;
+    private Button registerNowButton;
+    private SharedPreferences settings;
+    private boolean mIsBackButtonPressed;
 
 
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+
+
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        settings = getSharedPreferences("login", 0);
+        if (settings.getBoolean("loggedIn", false))
+            startHomeScreen();
+
+        setContentView(R.layout.activity_main);
+
+    }
+
+    public void register(View v) {startActivity(new Intent(this, Register.class));
+
+    private void startHomeScreen() {
+
+        Intent intent = new Intent(MainActivity.this, Landing.class);
+        MainActivity.this.startActivity(intent);
+
+
+        public void login(View v) {
+
+         CharSequence username = ((TextView) findViewById(R.id.userName))
+                 .getText();
+
+        CharSequence password = ((TextView) findViewById(R.id.passWord))
+                .getText();
+
+        String validUsername = settings.getString("username","");
+        String validPassword = settings.getString("password","");
+
+        if (username.length() <= 0 || password.length() <= 0)
+            Toast.makeText(this, "You must enter a valid email & password",
+                    Toast.LENGTH_SHORT).show();
+        else if (!username.toString().matches(validUsername)
+                || !password.toString().matches(validPassword))
+            Toast.makeText(this, "Unable to validate your email & password",
+                    Toast.LENGTH_SHORT).show();
+        else if (!mIsBackButtonPressed) {
+
+                SharedPreferences.Editor editor = settings.edit();
+                editor.putBoolean("loggedin", true);
+                editor.commit();
+
+                startHomeScreen();
+                this.finish();
+
+
+
+
+        }
+    }
+
+         //When a user clicks the login button they are brought to the landing page
+        Button btn1 = (Button) findViewById(R.id.loginButton);
+
+        btn1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, Landing.class));
             }
         });
 
-        loginButton = (Button) findViewById(R.id.loginButton);
 
-        if (loginButton != null)
-        {
-            Log.v("Login", "Logged in");
-        }
+        //When a user clicks the register button they are brought to the registration page
+        Button btn = (Button) findViewById(R.id.registerNowButton);
 
-        registerButton = (Button) findViewById(R.id.registerButton);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, Register.class));
+            }
 
-        if (registerButton != null)
-        {
-            Log.v("Register", "Registered");
-        }
+        });
+
 
     }
 
 
+
+
+
+
+
+
+
+    //Action Bar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -60,14 +123,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+
+
+    //When user clicks contact us they are brought to the contact us page
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+        switch (item.getItemId())
+        {
+            case R.id.contactUs : startActivity (new Intent(this, ContactUs.class));
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+        }
+
+
+
+    public boolean onOptionsItemsSelected(MenuItem item){
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
+
         if (id == R.id.action_settings) {
             return true;
         }
