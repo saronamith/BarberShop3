@@ -19,25 +19,19 @@ import android.view.View.OnClickListener;
 
 public class MainActivity extends AppCompatActivity {
 
-
     private Button loginButton;
     private Button registerNowButton;
     private SharedPreferences settings;
     public boolean mIsBackButtonPressed;
 
-
     public void onCreate(Bundle savedInstanceState) {
-
-        Button btn1;
-
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        loginButton =  findViewById(R.id.loginButton);
 
-        Button btn1 = (Button) findViewById(R.id.loginButton);
-
-        btn1.setOnClickListener(new View.OnClickListener() {
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
@@ -47,9 +41,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        Button btn = (Button) findViewById(R.id.registerNowButton);
+        registerNowButton = findViewById(R.id.registerNowButton);
 
-        btn.setOnClickListener(new View.OnClickListener() {
+        registerNowButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, Register.class));
