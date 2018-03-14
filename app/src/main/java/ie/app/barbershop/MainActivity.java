@@ -20,10 +20,10 @@ import android.view.View.OnClickListener;
 public class MainActivity extends AppCompatActivity {
 
 
-    private Button loginButton;
-    private Button registerNowButton;
+    public Button loginButton;
+    public Button registerNowButton;
     private SharedPreferences settings;
-    private boolean mIsBackButtonPressed;
+    public boolean mIsBackButtonPressed;
 
 
     public void onCreate(Bundle savedInstanceState) {
