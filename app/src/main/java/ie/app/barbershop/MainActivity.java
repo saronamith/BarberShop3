@@ -38,6 +38,31 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
+
+
+
+        Button btn1 = (Button) findViewById(R.id.loginButton);
+
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, Landing.class));
+            }
+        });
+
+
+
+
+        Button btn = (Button) findViewById(R.id.registerNowButton);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, Register.class));
+            }
+
+        });
+
     }
 
     public void register(View v) {startActivity(new Intent(this, Register.class));
@@ -81,30 +106,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-         //When a user clicks the login button they are brought to the landing page
-        Button btn1 = (Button) findViewById(R.id.loginButton);
-
-        btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, Landing.class));
-            }
-        });
 
 
-        //When a user clicks the register button they are brought to the registration page
-        Button btn = (Button) findViewById(R.id.registerNowButton);
-
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, Register.class));
-            }
-
-        });
 
 
-    }
+
+
 
 
 
