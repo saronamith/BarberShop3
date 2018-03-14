@@ -27,8 +27,14 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
+        settings = getSharedPreferences("login", 0);
+        if (settings.getBoolean("loggedIn", false))
+            startHomeScreen();
+
         setContentView(R.layout.activity_main);
 
+        registerNowButton = findViewById(R.id.registerNowButton);
         loginButton =  findViewById(R.id.loginButton);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -40,9 +46,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-        registerNowButton = findViewById(R.id.registerNowButton);
-
         registerNowButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,25 +54,12 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-
-        settings = getSharedPreferences("login", 0);
-        if (settings.getBoolean("loggedIn", false))
-            startHomeScreen();
-
     }
 
-
-
-
-
-
-
     public void register(View v)
-
             {
                 startActivity(new Intent(this, Register.class));
             }
-
 
     private void startHomeScreen()
             {
@@ -77,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, Landing.class);
                 MainActivity.this.startActivity(intent);
             }
-
 
     public void loginButtonPressed (View view)
             {
@@ -89,14 +78,7 @@ public class MainActivity extends AppCompatActivity {
             {
                 Log.v("Register", "Registered Now");
             }
-
-
-
-
     public void login(View v) {
-
-
-
 
         CharSequence username = ((TextView) findViewById(R.id.userName))
                 .getText();
@@ -124,14 +106,8 @@ public class MainActivity extends AppCompatActivity {
 
             startHomeScreen();
             this.finish();
-
-
-
-
-
         }
     }
-
 
     //Action Bar
     @Override
@@ -140,7 +116,6 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
-
 
     //When user clicks contact us they are brought to the contact us page
     @Override
@@ -153,10 +128,8 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
     public boolean onOptionsItemsSelected(MenuItem item) {
         int id = item.getItemId();
-
 
         if (id == R.id.action_settings) {
             return true;
@@ -164,8 +137,4 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
-
-
 }
