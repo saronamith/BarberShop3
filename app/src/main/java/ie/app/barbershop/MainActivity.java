@@ -26,9 +26,6 @@ public class MainActivity extends AppCompatActivity {
     private boolean mIsBackButtonPressed;
 
 
-
-
-
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -39,8 +36,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
-
         Button btn1 = (Button) findViewById(R.id.loginButton);
 
         btn1.setOnClickListener(new View.OnClickListener() {
@@ -49,8 +44,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, Landing.class));
             }
         });
-
-
 
 
         Button btn = (Button) findViewById(R.id.registerNowButton);
@@ -65,45 +58,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void register(View v) {startActivity(new Intent(this, Register.class));
-
-    private void startHomeScreen() {
-
-        Intent intent = new Intent(MainActivity.this, Landing.class);
-        MainActivity.this.startActivity(intent);
 
 
-        public void login(View v) {
-
-         CharSequence username = ((TextView) findViewById(R.id.userName))
-                 .getText();
-
-        CharSequence password = ((TextView) findViewById(R.id.passWord))
-                .getText();
-
-        String validUsername = settings.getString("username","");
-        String validPassword = settings.getString("password","");
-
-        if (username.length() <= 0 || password.length() <= 0)
-            Toast.makeText(this, "You must enter a valid email & password",
-                    Toast.LENGTH_SHORT).show();
-        else if (!username.toString().matches(validUsername)
-                || !password.toString().matches(validPassword))
-            Toast.makeText(this, "Unable to validate your email & password",
-                    Toast.LENGTH_SHORT).show();
-        else if (!mIsBackButtonPressed) {
-
-                SharedPreferences.Editor editor = settings.edit();
-                editor.putBoolean("loggedin", true);
-                editor.commit();
-
-                startHomeScreen();
-                this.finish();
-
-
-
-
-        }
+    public void register(View v) {
+        startActivity(new Intent(this, Register.class));
     }
 
 
@@ -111,14 +69,59 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    private void startHomeScreen() {
+
+        Intent intent = new Intent(MainActivity.this, Landing.class);
+        MainActivity.this.startActivity(intent);
+
+
+        public void loginButtonPressed (View view)
+            {
+                Log.v("Login", "Logged In");
+            }
+
+        public void registerButtonPressed (View view)
+            {
+                Log.v("Register", "Registered Now");
+            }
 
 
 
 
+    public void login(View v) {
+
+        CharSequence username = ((TextView) findViewById(R.id.userName))
+                .getText();
+
+        CharSequence password = ((TextView) findViewById(R.id.passWord))
+                .getText();
+
+        String validUsername = settings.getString("username", "");
+        String validPassword = settings.getString("password", "");
+
+        if (username.length() <= 0 || password.length() <= 0)
+            Toast.makeText(this, "You must enter a valid email & password",
+                    Toast.LENGTH_SHORT).show();
+
+        else if (!username.toString().matches(validUsername)
+                || !password.toString().matches(validPassword))
+            Toast.makeText(this, "Unable to validate your email & password",
+                    Toast.LENGTH_SHORT).show();
+
+        else if (!mIsBackButtonPressed) {
+
+            SharedPreferences.Editor editor = settings.edit();
+            editor.putBoolean("loggedin", true);
+            editor.commit();
+
+            startHomeScreen();
+            this.finish();
 
 
 
 
+        }
+    }
 
 
     //Action Bar
@@ -130,22 +133,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
     //When user clicks contact us they are brought to the contact us page
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId())
-        {
-            case R.id.contactUs : startActivity (new Intent(this, ContactUs.class));
+        switch (item.getItemId()) {
+            case R.id.contactUs:
+                startActivity(new Intent(this, ContactUs.class));
                 break;
         }
         return super.onOptionsItemSelected(item);
-        }
+    }
 
 
-
-    public boolean onOptionsItemsSelected(MenuItem item){
+    public boolean onOptionsItemsSelected(MenuItem item) {
         int id = item.getItemId();
 
 
@@ -155,17 +155,6 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-    public void loginButtonPressed(View view)
-    {
-        Log.v("Login", "Logged In");
-    }
-
-    public void registerButtonPressed(View view)
-    {
-        Log.v("Register","Registered Now");
-    }
-
 
 
 
