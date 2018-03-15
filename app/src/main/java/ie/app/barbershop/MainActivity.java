@@ -24,8 +24,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void onCreate(Bundle savedInstanceState) {
 
-        redirectToHomeIfAllowed();
         super.onCreate(savedInstanceState);
+        redirectToHomeIfAllowed();
         setContentView(R.layout.activity_main);
 
         userNameEditText = findViewById(R.id.userNameEditText);
@@ -37,8 +37,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                userNameEditText.getText();
-                passWordEditText.getText();
+
+                String username = userNameEditText.getText();
+                String password = passWordEditText.getText();
                 startActivity(new Intent(MainActivity.this, Landing.class));
             }
 
