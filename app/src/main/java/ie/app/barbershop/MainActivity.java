@@ -2,23 +2,21 @@ package ie.app.barbershop;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.util.Log;
 import android.content.Intent;
-import android.widget.TextView;
+import android.widget.EditText;
 import android.widget.Toast;
-import android.view.View.OnClickListener;
 
 
 public class MainActivity extends AppCompatActivity {
 
+    private EditText passWordEditText;
+    private EditText userNameEditText;
     private Button loginButton;
     private Button registerNowButton;
     private SharedPreferences settings;
@@ -26,24 +24,24 @@ public class MainActivity extends AppCompatActivity {
 
     public void onCreate(Bundle savedInstanceState) {
 
+        redirectToHomeIfAllowed();
         super.onCreate(savedInstanceState);
-
-        settings = getSharedPreferences("login", 0);
-        if (settings.getBoolean("loggedIn", false))
-            startHomeScreen();
-
         setContentView(R.layout.activity_main);
 
+        userNameEditText = findViewById(R.id.userNameEditText);
+        passWordEditText = findViewById(R.id.passWordEditText);
         registerNowButton = findViewById(R.id.registerNowButton);
-        loginButton =  findViewById(R.id.loginButton);
+        loginButton = findViewById(R.id.loginButton);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
 
+            @Override
+            public void onClick(View v) {
+                userNameEditText.getText();
+                passWordEditText.getText();
                 startActivity(new Intent(MainActivity.this, Landing.class));
             }
+
         });
 
         registerNowButton.setOnClickListener(new View.OnClickListener() {
@@ -56,36 +54,40 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void register(View v)
-            {
-                startActivity(new Intent(this, Register.class));
-            }
+    public void redirectToHomeIfAllowed() {
 
-    private void startHomeScreen()
-            {
+        settings = getSharedPreferences("login", 0);
 
-                Intent intent = new Intent(MainActivity.this, Landing.class);
-                MainActivity.this.startActivity(intent);
-            }
+        if (settings.getBoolean("loggedin", false))
+            startHomeScreen();
 
-    public void loginButtonPressed (View view)
-            {
-                Log.v("Login", "Logged In");
+    }
 
-            }
+    public void register(View v) {
 
-    public void registerButtonPressed (View view)
-            {
-                Log.v("Register", "Registered Now");
-            }
+        startActivity(new Intent(this, Register.class));
+    }
+
+    private void startHomeScreen() {
+
+        Intent intent = new Intent(MainActivity.this, Landing.class);
+        MainActivity.this.startActivity(intent);
+    }
+
+    public void loginButtonPressed(View view) {
+        Log.v("Login", "Logged In");
+
+    }
+
+    public void registerButtonPressed(View view) {
+        Log.v("Register", "Registered Now");
+    }
+
+
     public void login(View v) {
 
-        CharSequence username = ((TextView) findViewById(R.id.userName))
-                .getText();
-
-        CharSequence password = ((TextView) findViewById(R.id.passWord))
-                .getText();
-
+        CharSequence username = ((EditText) findViewById(R.id.userNameEditText)).getText();
+        CharSequence password = ((EditText) findViewById(R.id.passWordEditText)).getText();
         String validUsername = settings.getString("username", "");
         String validPassword = settings.getString("password", "");
 
@@ -121,20 +123,19 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.contactUs:
-                startActivity(new Intent(this, ContactUs.class));
-                break;
-        }
+            case R.id.contactUs:startActivity
+                (new Intent(this,
+                        ContactUs.class));break;}
         return super.onOptionsItemSelected(item);
     }
+
 
     public boolean onOptionsItemsSelected(MenuItem item) {
         int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+                if (id == R.id.action_settings)
+                {return true;}
+                return super.onOptionsItemSelected(item);
     }
+
 }
+
