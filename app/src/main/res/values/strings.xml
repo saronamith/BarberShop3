@@ -25,5 +25,25 @@
     <string name="galleryImage">gallery</string>
     <string name="gallery">Gallery</string>
     <string name="galleryText">Gallery</string>
+    <string name="productText">€12.99</string>
+    <string name="productText1">€15.99</string>
+    <string name="productText2">€15.99</string>
+    <string name="productText3">€22.99</string>
+    <string name="productText4">€20.99</string>
+    <string name="productText5">€21.99</string>
+    <string name="productShirt">T-Shirt</string>
+    <string name="productJumper">Jumper</string>
+    <string name="productJumperBlack">Jumper</string>
+    <string name="productGelSet">Gel Set</string>
+    <string name="productShaveSet">Shave Set</string>
+    <string name="productBarberSet">Barber Set</string>
+    <string name="buttonBookAppointment">Book Appointment</string>
+    <string name="full_name_appointment">Full Name</string>
+    <string name="contact_number_appointment">Contact Number</string>
+    <string name="appointmentPicture">Appointment</string>
+    <string name="buttonProducts">Products</string>
+    <string name="buttonGallery">Gallery</string>
+    <string name="contactUsButton">Contact Us</string>
+    <string name="contact">Contact</string>
 
 </resources>

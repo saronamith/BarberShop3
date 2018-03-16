@@ -13,36 +13,33 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
+
 public class MainActivity extends AppCompatActivity {
 
     private EditText passWordEditText;
     private EditText userNameEditText;
     private Button loginButton;
     private Button registerNowButton;
-    private SharedPreferences settings;
-    public boolean mIsBackButtonPressed;
+    private SharedPreferences sharedPreferences;
+    public boolean accessGranted;
 
     public void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        redirectToHomeIfAllowed();
+
         setContentView(R.layout.activity_main);
 
         userNameEditText = findViewById(R.id.userNameEditText);
         passWordEditText = findViewById(R.id.passWordEditText);
         registerNowButton = findViewById(R.id.registerNowButton);
         loginButton = findViewById(R.id.loginButton);
+        sharedPreferences = getSharedPreferences("login", 0);
+        redirectToHomeIfAllowed();
 
         loginButton.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
-
-                String username = userNameEditText.getText();
-                String password = passWordEditText.getText();
-                startActivity(new Intent(MainActivity.this, Landing.class));
+                login();
             }
-
         });
 
         registerNowButton.setOnClickListener(new View.OnClickListener() {
@@ -50,62 +47,40 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, Register.class));
             }
-
         });
-
     }
 
     public void redirectToHomeIfAllowed() {
 
-        settings = getSharedPreferences("login", 0);
-
-        if (settings.getBoolean("loggedin", false))
+        if (sharedPreferences.getBoolean("loggedin", false)){
             startHomeScreen();
-
+        }
     }
 
     public void register(View v) {
-
         startActivity(new Intent(this, Register.class));
     }
 
     private void startHomeScreen() {
-
-        Intent intent = new Intent(MainActivity.this, Landing.class);
+        Intent intent = new Intent(MainActivity.this, MainActivity.class);
         MainActivity.this.startActivity(intent);
     }
 
-    public void loginButtonPressed(View view) {
-        Log.v("Login", "Logged In");
+    public void login() {
+        String username = userNameEditText.toString();
+        String password = passWordEditText.toString();
 
-    }
+        String validUsername = sharedPreferences.getString("username", "");
+        String validPassword = sharedPreferences.getString("password", "");
 
-    public void registerButtonPressed(View view) {
-        Log.v("Register", "Registered Now");
-    }
-
-
-    public void login(View v) {
-
-        CharSequence username = ((EditText) findViewById(R.id.userNameEditText)).getText();
-        CharSequence password = ((EditText) findViewById(R.id.passWordEditText)).getText();
-        String validUsername = settings.getString("username", "");
-        String validPassword = settings.getString("password", "");
-
-        if (username.length() <= 0 || password.length() <= 0)
-            Toast.makeText(this, "You must enter a valid email & password",
-                    Toast.LENGTH_SHORT).show();
-
-        else if (!username.toString().matches(validUsername)
-                || !password.toString().matches(validPassword))
-            Toast.makeText(this, "Unable to validate your email & password",
-                    Toast.LENGTH_SHORT).show();
-
-        else if (!mIsBackButtonPressed) {
-
-            SharedPreferences.Editor editor = settings.edit();
+        if (username.isEmpty() || password.isEmpty() )
+            Toast.makeText(this, "You must enter a valid email & password", Toast.LENGTH_SHORT).show();
+        else if (!userNameEditText.toString().matches(validUsername) || !passWordEditText.toString().matches(validPassword))
+            Toast.makeText(this, "Unable to validate your email & password", Toast.LENGTH_SHORT).show();
+        else if (!accessGranted) {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putBoolean("loggedin", true);
-            editor.commit();
+            editor.apply();
 
             startHomeScreen();
             this.finish();
@@ -125,18 +100,20 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.contactUs:startActivity
-                (new Intent(this,
-                        ContactUs.class));break;}
+                    (new Intent(this, ContactUs.class));
+                break;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
-
     public boolean onOptionsItemsSelected(MenuItem item) {
         int id = item.getItemId();
-                if (id == R.id.action_settings)
-                {return true;}
-                return super.onOptionsItemSelected(item);
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }
-

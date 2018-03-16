@@ -9,9 +9,5 @@
     tools:context="ie.app.barbershop.Landing"
     android:background="@drawable/backgroundbarbershop">
 
-
-
-
-
-
+    <include layout="@layout/content_landing"/>
 </RelativeLayout>

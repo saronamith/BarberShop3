@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="ie.app.barbershop.MainActivity"
-    tools:showIn="@layout/activity_main">
+    tools:showIn="@layout/activity_main"
+    android:background="@drawable/background2">
 
     <!--Username-->
     <EditText
@@ -20,6 +21,8 @@
         android:ems="10"
         android:hint="@string/userName"
         android:inputType="textNoSuggestions|textPersonName"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textColorHint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,6 +39,9 @@
         android:ems="10"
         android:hint="@string/passWord"
         android:inputType="textPassword"
+        android:textColorHint="#FFFFFF"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,11 +56,12 @@
         android:layout_marginStart="148dp"
         android:layout_marginTop="8dp"
         android:text="@string/signIn"
-        android:onClick="loginButtonPressed"
+        android:onClick="loginButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passWordEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/passWordEditText"
+        tools:ignore="OnClick" />
 
     <!--Register Now Button-->
     <Button
@@ -71,7 +78,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loginButton"
-        app:layout_constraintVertical_bias="0.078" />
+        app:layout_constraintVertical_bias="0.078"
+        tools:ignore="OnClick" />
 
     <ImageView
         android:id="@+id/imageView4"

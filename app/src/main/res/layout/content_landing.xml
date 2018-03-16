@@ -28,30 +28,81 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_shopping_cart_black_36dp" />
 
-    <TextView
-        android:id="@+id/textView"
+    <ImageView
+        android:id="@+id/imageView11"
+        android:layout_width="149dp"
+        android:layout_height="144dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:contentDescription="@string/appointmentPicture"
+        app:layout_constraintBottom_toTopOf="@+id/buttonCreateAppointment"
+        app:layout_constraintEnd_toStartOf="@+id/imageView12"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/book" />
+
+    <Button
+        android:id="@+id/buttonCreateAppointment"
+        android:layout_width="146dp"
+        android:layout_height="54dp"
+        android:layout_marginBottom="76dp"
+        android:layout_marginStart="28dp"
+        android:text="@string/buttonBookAppointment"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonProducts"
+        android:layout_width="146dp"
+        android:layout_height="38dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/buttonProducts"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+    <Button
+        android:id="@+id/buttonGallery"
         android:layout_width="145dp"
-        android:layout_height="34dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="@string/galleryText"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintEnd_toStartOf="@+id/textView2"
+        android:text="@string/buttonGallery"
+        app:layout_constraintBottom_toTopOf="@+id/imageView11"
+        app:layout_constraintEnd_toStartOf="@+id/buttonProducts"
+        app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="151dp"
-        android:layout_height="32dp"
-        android:layout_marginEnd="36dp"
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="140dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="@string/products"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:text="@string/contactUsButton"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintHorizontal_bias="0.314"
+        app:layout_constraintStart_toEndOf="@+id/buttonCreateAppointment"
+        app:layout_constraintTop_toBottomOf="@+id/imageView12"
+        app:layout_constraintVertical_bias="0.157" />
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="wrap_content"
+        android:layout_height="144dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/contact"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonProducts"
+        app:srcCompat="@drawable/ic_contact_phone_black_36dp" />
 
 </android.support.constraint.ConstraintLayout>
